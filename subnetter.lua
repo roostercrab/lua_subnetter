@@ -1,5 +1,6 @@
 local ip_check = require("ip_check")
 local mask_check = require("mask_check")
+local dotted_dec_to_bin = require("dotted_dec_to_bin")
 
 -- IP Entry
 local checked_ip_address = ""
@@ -14,11 +15,6 @@ while ip_valid == false do
   end
 end
 
--- Print IP results
-print(checked_ip_address)
-local ip_dec_octet1, ip_dec_octet2, ip_dec_octet3, ip_dec_octet4 = string.match(checked_ip_address, "(.*)%.(.*)%.(.*)%.(.*)")
-print(ip_dec_octet1, ip_dec_octet2, ip_dec_octet3, ip_dec_octet4)
-
 -- Mask Entry
 local checked_mask_address = ""
 local mask_valid = false
@@ -32,7 +28,19 @@ while mask_valid == false do
   end
 end
 
+
+-- Print IP results
+print(checked_ip_address)
+local ip_dec_octet1, ip_dec_octet2, ip_dec_octet3, ip_dec_octet4 = string.match(checked_ip_address, "(.*)%.(.*)%.(.*)%.(.*)")
+print(ip_dec_octet1, ip_dec_octet2, ip_dec_octet3, ip_dec_octet4)
+
 -- Print Mask results
 print(checked_mask_address)
 local mask_dec_octet1, mask_dec_octet2, mask_dec_octet3, mask_dec_octet4 = string.match(checked_mask_address, "(.*)%.(.*)%.(.*)%.(.*)")
 print(mask_dec_octet1, mask_dec_octet2, mask_dec_octet3, mask_dec_octet4)
+
+local ip_dec_table = {ip_dec_octet1, ip_dec_octet2, ip_dec_octet3, ip_dec_octet4}
+local mask_dec_table = {mask_dec_octet1, mask_dec_octet2, mask_dec_octet3, mask_dec_octet4}
+local ip_bin_table = {}
+local mask_bin_table = {}
+
